@@ -23,7 +23,8 @@ through an AI gateway. I need:
 |---|---|---|
 | 0 | AI Solutions Lead | "Running as an agent team…" and the stages it will run |
 | 1 | AI Solutions Lead | 4 multiple-choice questions (call volume, vendor hosting, systems of record, compliance) |
-| 2 | discovery-analyst → md-senior-partner | Understanding Document + review note (e.g. approved in round 1) |
+| 2 | discovery-analyst → md-senior-partner | Research Brief: how banks built card-servicing voice bots, Azure reference architectures, pitfalls, regulator guidance (runs while you answer step 1) |
+| 2b | AI Solutions Lead → md-senior-partner | Understanding Document + review note (e.g. approved in round 1) |
 | 3 | solution-architect → md-senior-partner | Architecture write-up with ADRs + review note (e.g. round 2 after fixing a missing fallback path) |
 | 4 | diagram-specialist → md-senior-partner | Azure diagram in draw.io, **Open in draw.io** link, `.drawio` file + review note |
 | 5 | deck-strategist → md-senior-partner | CIO/COO deck + review note |
@@ -39,7 +40,7 @@ Attached are my notes from two discovery workshops with an insurer about
 automating claims intake with AI. Turn them into an understanding document
 for the client's CTO to confirm. Word format please.
 ```
-Runs: clarify (only real gaps) → discovery-analyst → partner gate. Output: `.docx` Understanding Document with numbered FR/NFR, assumptions and open questions.
+Runs: research + clarify (only real gaps) → AI Solutions Lead writes it → partner gate. Output: `.docx` Understanding Document with numbered FR/NFR, assumptions and open questions.
 
 ---
 
@@ -51,7 +52,7 @@ Design an AWS architecture for an internal assistant that answers employee
 questions from HR and IT policy documents in SharePoint. 8,000 employees,
 SSO with Entra ID, data must stay in ap-south-1. Include the AWS diagram.
 ```
-Runs: clarify → discovery-analyst → solution-architect → diagram-specialist (aws4 icons) → partner gate on each.
+Runs: research + clarify → understanding document → solution-architect → diagram-specialist (aws4 icons) → partner gate on each.
 
 ---
 
@@ -76,7 +77,7 @@ Runs: light clarify → diagram-specialist → partner gate. Output: two-panel f
 Our conversational AI vendor offers SaaS or deployment into our GCP project.
 Compare the two for a regulated bank and recommend one, with an ADR.
 ```
-Runs: clarify → solution-architect (options table + ADR) → partner gate.
+Runs: research (published comparisons, regulator guidance) + clarify → solution-architect (options table + ADR) → partner gate.
 
 ---
 
@@ -100,3 +101,15 @@ data center with DMZ and session border controller, ExpressRoute to Azure
 hub-spoke, private endpoints for AI services, trust boundaries marked.
 ```
 Runs: diagram-specialist (Azure + on-prem shapes) → partner gate.
+
+---
+
+## 8. Research only
+
+```
+/ai-solutions-lead
+How have banks and insurers implemented AI agent assist in their contact
+centers? I want implementation patterns, best practices, pitfalls and
+published results.
+```
+Runs: discovery-analyst → partner gate. Output: cited Research Brief with source grades and the top implications first.

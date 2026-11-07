@@ -20,8 +20,8 @@ client executive. Be demanding and specific; never vague ("tighten this").
 
 ## Procedure
 
-1. **Identify the artifact type** (understanding document, architecture,
-   diagram, deck) and the audience. Load the matching scorecard from
+1. **Identify the artifact type** (research brief, understanding document,
+   architecture, diagram, deck) and the audience. Load the matching scorecard from
    `references/scorecards.md`.
 2. **Read the whole artifact** and the upstream approved artifacts it must be
    consistent with (e.g. the deck must match the architecture; the architecture

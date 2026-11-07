@@ -41,30 +41,43 @@ a hypothesis that holds until a constraint changes; make the constraints explici
 7. **Stress-test.** Single points of failure, degradation and fallback paths,
    DR (RTO/RPO), security threats (`references/security-compliance.md`),
    AI risks (hallucination, prompt injection, data leakage), cost at 10× volume.
-8. **Iterate** on the weakest part, then write it up.
+8. **Iterate** on the weakest part, then write the Solution Architecture Document below.
 
-## Write-up structure
+## Write the Solution Architecture Document for the client's team
 
-1. Context and drivers (link to Understanding Document).
-2. Architecture principles (5–7, specific to this client).
-3. Logical architecture: layers and components, one line on each component's
-   job.
-4. Key flows: numbered steps for the 2–4 most important journeys
-   (e.g. inbound call, outbound campaign, knowledge update).
-5. Physical / deployment view (CSP-specific): regions, networks, subnets,
-   private connectivity, managed services, on-prem components.
-6. Integration view: system, direction, protocol, auth, data, owner.
-7. Security, privacy and compliance controls mapped to NFRs.
-8. Non-functional design: scalability, availability, DR, performance, observability.
-9. AI design: models and access path, grounding / knowledge, guardrails,
-   evaluation, human-in-the-loop, model risk governance.
-10. Architecture decisions (ADRs) and alternatives rejected.
-11. Risks, assumptions, open questions.
-12. Roadmap: phases with exit criteria.
+The reader is the **client's own team**: their enterprise architects, platform
+and infrastructure engineers, security, application owners and delivery leads.
+They will build, run and approve this. Write so that each of them can answer:
+*what are we building, what does each piece do, how does a request flow through
+it, what do I own, and why was it designed this way?*
 
-When a diagram is requested, hand the logical and physical views to
-`csp-architecture-diagram` with a component list, groupings (regions, VNets/VPCs,
-on-prem zone), and the edges with labels.
+- **Architecture first.** At least 60% of the document describes the
+  architecture itself: components, how they interact, flows, deployment,
+  integration, security and operations. Context, research and roadmap stay short.
+- **Their language, their systems.** Name their systems, environments and teams
+  as they do. Explain every acronym once. No consulting filler, no sales tone.
+- **Every component explained.** For each component: role, purpose (the
+  requirement it serves), responsibilities, inputs and outputs, interfaces,
+  technology/service, who owns and operates it, how it scales and fails, and
+  why it was chosen over the alternatives.
+- **Flow diagrams in the document.** Embed diagrams directly in the document,
+  not only as links:
+  1. **Architecture overview diagram** — all components grouped by layer, with
+     numbered interactions.
+  2. **One flow diagram per key journey** (e.g. inbound call, outbound campaign,
+     knowledge publish) — numbered steps; the step table under it names the
+     component, the action, the data and the protocol for each step, so the
+     reader sees each component's role in motion.
+  Draft each as a Mermaid diagram in the document (flowchart or sequence
+  diagram). When the diagram specialist produces draw.io versions, insert the
+  exported image and keep the Open in draw.io link beneath it.
+
+Follow `assets/architecture-document-template.md` section by section. Keep the
+component catalogue and journey flows as the core of the document.
+
+When draw.io diagrams are requested, hand `csp-architecture-diagram` the
+component catalogue, groupings (regions, VNets/VPCs, on-prem zone), and the
+numbered edges from the journey flows.
 
 ## Guardrails
 
@@ -75,6 +88,10 @@ on-prem zone), and the edges with labels.
   management) when the client has one.
 - Design for failure: every automated path has a human or legacy fallback.
 - Do not invent product capabilities, prices or SLAs; flag them `[verify with vendor]`.
+
+## Asset
+
+- `assets/architecture-document-template.md` — the Solution Architecture Document template (component catalogue, journey flow diagrams, deployment, integration, security, operations, ADRs).
 
 ## References
 

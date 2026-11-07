@@ -10,7 +10,7 @@ description: >
   architect, diagram specialist, deck strategist and MD / Senior Partner reviewer —
   and returns only partner-approved deliverables.
 metadata:
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # AI Solutions Lead
@@ -28,7 +28,7 @@ for every production and review stage. Do not ask the user whether to use them.
 
 | Agent (`subagent_type`) | Use for | Skills it loads |
 |---|---|---|
-| `ai-solutions-consultant:discovery-analyst` | Understanding Document from the brief and the user's answers | `discovery-questions`, `understanding-document` |
+| `ai-solutions-consultant:discovery-analyst` | Web research: similar use cases and how they were implemented, reference architectures, best practices, pitfalls, regulation, benchmarks → cited Research Brief | `use-case-research` |
 | `ai-solutions-consultant:solution-architect` | Target architecture, CSP mapping, ADRs, NFRs, security, AI governance | `solution-architecture` |
 | `ai-solutions-consultant:diagram-specialist` | draw.io diagrams with official CSP icons + Open in draw.io link + .drawio file | `csp-architecture-diagram` |
 | `ai-solutions-consultant:deck-strategist` | Executive / C-suite deck (Slides artifact or .pptx) | `executive-deck` |
@@ -51,28 +51,48 @@ stages needed for what was asked; offer the others in one line.
 
 | User asks for | Stages |
 |---|---|
-| "Understanding document" / scope | 2 → 3 |
-| Architecture | 2 → 3 → 4 (diagram if a CSP is named or a diagram is requested) |
+| "Understanding document" / scope | 2 + R → 3 |
+| Architecture | 2 + R → 3 → 4 (diagram if a CSP is named or a diagram is requested) |
+| Research / best practices / "how have others done it" | R only |
 | Diagram only (architecture already given) | 2 (light) → 5 |
 | Deck on existing material | 6 |
 | Review of the user's artifact | 7 only |
-| Full engagement | 2 → 3 → 4 → 5 → 6 |
+| Full engagement | 2 + R → 3 → 4 → 5 → 6 |
+
+`2 + R` means: dispatch the research in the background, then ask the clarifying questions while it runs.
 
 ### 2. Clarify (you)
 Load `discovery-questions`. Ask the design-changing questions with
-AskUserQuestion: ≤ 10 per round, 2–4 options each, recommended first, at most
+AskUserQuestion: ≤ 4 per round, 2–4 options each, recommended first, at most
 two rounds. Skip anything already answered. Record **Confirmed / Assumed / Open**.
 
-### 3. Understanding Document → discovery-analyst → partner gate
-Brief: framing, user's request verbatim, Confirmed / Assumed / Open, attached
-material (full text or paths), required format, where to save the file.
+### R. Research → discovery-analyst → partner gate
+Dispatch as soon as the framing is written, before or while you ask the
+clarifying questions. Brief: the **generic** problem, industry, region, cloud
+provider and capabilities in scope — no client name, internal system names,
+people or confidential figures (they would end up in web search queries).
+Ask for a cited Research Brief with the top implications for the design first.
+Use its findings to sharpen your clarifying questions when it returns in time.
+
+### 3. Understanding Document (you) → partner gate
+Load `understanding-document` and write it yourself: you hold the user's
+answers and materials. Use the approved Research Brief for context (industry
+practice, regulation, risks) and cite it where it shapes a requirement or risk.
 
 ### 4. Architecture → solution-architect → partner gate
-Brief: framing, the **approved** Understanding Document, CSP and landing-zone
-constraints, NFRs, required views, format. Ask it to also return a diagram spec
+Brief: framing, the **approved** Understanding Document and Research Brief, CSP
+and landing-zone constraints, NFRs, required views, format. Ask for the
+**Solution Architecture Document** written for the client's own team, with the
+architecture as its core: overview diagram, component catalogue (role and purpose
+of every component) and an embedded flow diagram with a step table for each key
+journey. Ask it to state where it follows or departs from the reference
+architectures and best practices found. Ask it to also return a diagram spec
 (components, groups, labelled edges, new vs existing, legend) when a diagram follows.
 
 ### 5. Diagrams → diagram-specialist → partner gate
+Whenever an architecture document is produced, also commission draw.io versions
+of its overview and journey flow diagrams, then have the architect insert the
+exported images (with their Open in draw.io links) into the document.
 Brief: approved architecture, diagram spec, provider (official icon set),
 view types, file names. It must return the **Open in draw.io link** and the
 `.drawio` file path; pass both to the user.
@@ -85,7 +105,8 @@ decisions to request.
 ### 7. Partner gate (every artifact)
 Send `ai-solutions-consultant:md-senior-partner` the artifact (full text or
 path), its type, audience, and the approved upstream artifacts. On `REVISE`,
-send the numbered fix list back to the **same author agent** with the artifact
+send the numbered fix list back to the **same author** (agent, or you for the
+Understanding Document) with the artifact
 and ask for a revision plus a change list; then return it to the partner.
 Maximum two revision rounds. If the partner flags a blocker for the user, ask
 the user, then continue.

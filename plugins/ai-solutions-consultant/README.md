@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="Claude Cowork plugin" src="https://img.shields.io/badge/Claude-Cowork%20plugin-D97757"/>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-1E4FD8"/>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.5.0-1E4FD8"/>
   <img alt="Clouds" src="https://img.shields.io/badge/clouds-Azure%20%7C%20AWS%20%7C%20GCP%20%7C%20Hybrid-0B1F4D"/>
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green"/>
 </p>
@@ -31,8 +31,9 @@ This plugin puts that whole team into Claude, with the partner's quality gate bu
 | Deliverable | What it contains | Format |
 |---|---|---|
 | **Clarifying questions** | The 4–8 questions whose answers change the design, asked as quick multiple-choice rounds | In chat |
+| **Research Brief** | How similar organizations implemented the same use case, provider reference architectures, best practices, pitfalls, regulation and benchmarks, every claim cited and source-graded | Markdown / doc |
 | **Understanding Document** | Executive summary, scope in/out, as-is and to-be process, numbered FR/NFR, integration inventory, assumptions, risks, open questions | Living doc, Markdown or Word |
-| **Target architecture** | Principles, logical layers, key flows, CSP-specific deployment view, integration view, security controls, AI governance, ADRs, roadmap | Living doc, Markdown or Word |
+| **Solution Architecture Document** | Written for the client's own architects, engineers and security team: an architecture overview diagram, a catalogue explaining the role and purpose of every component, an embedded flow diagram and step table for each key journey, deployment, integration, security, operations, AI controls, ADRs | Living doc, Markdown or Word |
 | **Architecture diagrams** | Context, logical, deployment, network or current-vs-proposed views using the **official Azure, AWS or GCP icon sets** | draw.io, plus a one-click **Open in draw.io** link and a `.drawio` file |
 | **Executive deck** | Answer-first storyline, action titles, exhibits instead of bullets, sources on every slide, decisions requested | Claude Slides or PowerPoint |
 | **Partner review note** | Scores, what changed in revision, residual risks, the one-sentence takeaway | Attached to every deliverable |
@@ -42,7 +43,7 @@ This plugin puts that whole team into Claude, with the partner's quality gate bu
 ```mermaid
 flowchart LR
     U([You]) -->|/ai-solutions-lead| L{{AI Solutions Lead<br/>frames · asks questions · assigns}}
-    L --> D[Discovery Analyst<br/>Understanding Document]
+    L --> D[Discovery Analyst<br/>web research: use cases,<br/>best practices, pitfalls]
     L --> A[Solution Architect<br/>CSP-specific architecture]
     L --> G[Diagram Specialist<br/>draw.io + official icons]
     L --> K[Deck Strategist<br/>C-suite deck]
@@ -52,7 +53,7 @@ flowchart LR
     L -->|approved deliverables<br/>+ partner cover note| U
 ```
 
-The lead runs the stages in order (understanding document → architecture → diagrams and deck), and each stage builds only on approved work. Only the stages you ask for run: ask for a diagram and you get a diagram, not an unrequested deck.
+The lead runs the stages in order: research (in the background while you answer its questions) → understanding document → architecture → diagrams and deck. Each stage builds only on approved work, so the design starts from evidence of what has worked elsewhere. Only the stages you ask for run: ask for a diagram and you get a diagram, not an unrequested deck.
 
 **A real agent team, every time.** Selecting `/ai-solutions-lead` is your request to run the team, so the lead never asks whether to use agents. Its first message confirms the mode. If agents can't run in your environment, it says so in that first message and marks every review note `same-session (not independent)`; you're never told after delivery.
 
@@ -60,9 +61,9 @@ The lead runs the stages in order (understanding document → architecture → d
 
 | Agent | Plays the role of | Owns |
 |---|---|---|
-| 🧭 **ai-solutions-lead** | Engagement lead: **your only point of contact** | Framing, every clarifying question, assigning work, routing reviews and revisions, delivering approved work |
+| 🧭 **ai-solutions-lead** | Engagement lead: **your only point of contact** | Framing, every clarifying question, the Understanding Document, assigning work, routing reviews and revisions, delivering approved work |
 | 🎩 **md-senior-partner** | MD / Senior Partner at a top-tier strategy and technology firm | Independent review and approval of every artifact, consistency across deliverables, the closing cover note |
-| 🔎 **discovery-analyst** | Senior consultant | Clarifying questions and the Understanding Document |
+| 🔎 **discovery-analyst** | Research analyst in the firm's knowledge team | Web research on similar use cases and how they were built, reference architectures, best practices, pitfalls, regulation, benchmarks: the cited Research Brief. Searches only the generic problem, never your client's name or details |
 | 🏗️ **solution-architect** | Principal enterprise and cloud architect | Logical and CSP-specific architecture, AI-integration patterns, NFRs, security, ADRs |
 | 🗺️ **diagram-specialist** | Architecture visualization lead | draw.io diagrams with official provider icons, Open in draw.io link |
 | 📊 **deck-strategist** | Engagement manager | Storyline, ghost deck, executive slides, speaker notes |
@@ -73,8 +74,9 @@ Every artifact is scored 1–5 against a scorecard for its type. It ships only w
 
 | Artifact | Scored on |
 |---|---|
+| Research Brief | Relevance · evidence quality · coverage · citation integrity · confidentiality · decision usefulness |
 | Understanding Document | Completeness · accuracy and sourcing · requirement quality · current vs target clarity · risk coverage · executive readability |
-| Architecture | Traceability to requirements · soundness · trade-offs · security and compliance · resilience · CSP fidelity · AI governance |
+| Architecture | Client-team readability · architecture depth · flow diagrams · traceability to requirements · soundness · trade-offs · security and compliance · resilience · CSP fidelity · AI governance |
 | Diagram | Official icon fidelity · correctness · structure and nesting · flow clarity · readability · new vs existing · draw.io link delivered |
 | Deck | Storyline · action titles · evidence · audience fit · visual quality · the ask · consistency |
 
@@ -143,6 +145,12 @@ Design an AWS architecture for an HR/IT policy assistant over SharePoint documen
 Draw the current vs proposed inbound call flow in draw.io: [describe both flows].
 ```
 
+**Research only**
+```
+/ai-solutions-lead
+How have banks implemented AI agent assist in their contact centers? Best practices, pitfalls and published results.
+```
+
 **Decision and ADR**
 ```
 /ai-solutions-lead
@@ -161,11 +169,12 @@ Review the attached deck like a senior partner before it goes to the COO. Be tou
 |---|---|---|
 | 0 | AI Solutions Lead | "Running as an agent team…" and the stages it will run |
 | 1 | AI Solutions Lead | 3–4 multiple-choice questions that change the design |
-| 2 | Discovery Analyst → Partner | Understanding Document + review note |
-| 3 | Solution Architect → Partner | Architecture write-up with ADRs + review note |
-| 4 | Diagram Specialist → Partner | draw.io diagram, **Open in draw.io** link, `.drawio` file + review note |
-| 5 | Deck Strategist → Partner | Executive deck + review note |
-| 6 | AI Solutions Lead | Partner cover note: three takeaways, open questions, decisions required, placeholders to fill |
+| 2 | Discovery Analyst → Partner | Research Brief: how others built it, best practices, pitfalls (runs while you answer step 1) |
+| 3 | AI Solutions Lead → Partner | Understanding Document + review note |
+| 4 | Solution Architect → Partner | Solution Architecture Document: overview diagram, every component's role and purpose, a flow diagram per journey, ADRs + review note |
+| 5 | Diagram Specialist → Partner | draw.io diagram, **Open in draw.io** link, `.drawio` file + review note |
+| 6 | Deck Strategist → Partner | Executive deck + review note |
+| 7 | AI Solutions Lead | Partner cover note: three takeaways, open questions, decisions required, placeholders to fill |
 
 ## Skills inside
 
@@ -175,7 +184,8 @@ The specialists load these skills themselves; you only ever call `/ai-solutions-
 |---|---|
 | `ai-solutions-lead` | **The front door.** Turns the session into the AI Solutions Lead and runs the team |
 | `discovery-questions` | AI Solutions Lead (clarifying questions) |
-| `understanding-document` | Discovery Analyst |
+| `use-case-research` | Discovery Analyst |
+| `understanding-document` | AI Solutions Lead |
 | `solution-architecture` | Solution Architect |
 | `csp-architecture-diagram` | Diagram Specialist |
 | `executive-deck` | Deck Strategist |
@@ -201,8 +211,9 @@ plugins/ai-solutions-consultant/
 └── skills/
     ├── ai-solutions-lead/             the front door: team workflow, briefs, review routing
     ├── discovery-questions/           question bank by dimension
+    ├── use-case-research/             web research method and Research Brief template
     ├── understanding-document/        document template
-    ├── solution-architecture/         building blocks, AI patterns, CSP service map, trade-offs, security
+    ├── solution-architecture/         architecture document template, building blocks, AI patterns, CSP service map, trade-offs, security
     ├── csp-architecture-diagram/      Azure / AWS / GCP / hybrid icon guides, layout rules, draw.io link script
     ├── executive-deck/                slide patterns and storyline rules
     └── partner-review/                scorecards

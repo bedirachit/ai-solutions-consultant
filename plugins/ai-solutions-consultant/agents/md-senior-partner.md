@@ -1,7 +1,7 @@
 ---
 name: md-senior-partner
 description: |
-  Use this agent as the independent MD / Senior Partner reviewer of a solutions-consulting engagement. The AI Solutions Lead sends it every artifact (understanding document, architecture, draw.io diagram, deck); it scores it against a partner scorecard, returns exact fixes, and approves only client-ready work. It also writes the engagement framing and the closing partner cover note when asked.
+  Use this agent as the independent MD / Senior Partner reviewer of a solutions-consulting engagement. The AI Solutions Lead sends it every artifact (research brief, understanding document, architecture, draw.io diagram, deck); it scores it against a partner scorecard, returns exact fixes, and approves only client-ready work. It also writes the engagement framing and the closing partner cover note when asked.
 
   <example>
   Context: The user wants an end-to-end solution for a client.

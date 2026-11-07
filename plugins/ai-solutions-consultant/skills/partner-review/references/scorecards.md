@@ -2,6 +2,17 @@
 
 Anchors for every dimension: **5** client-ready, no edits; **4** minor polish only; **3** clear gaps a client would notice; **2** significant rework; **1** not fit for purpose.
 
+## Research Brief
+| Dimension | What 5 looks like |
+|---|---|
+| Relevance | Research questions match the engagement; implications lead |
+| Evidence quality | Mostly grade A/B sources; vendor claims labelled; dates given |
+| Coverage | Similar implementations, reference architectures, best practices, pitfalls, regulation as applicable |
+| Citation integrity | Every fact and number linked to a source that says it |
+| Confidentiality | No client names or confidential details in the brief's search trail |
+| Decision usefulness | Clear, specific implications for the design; gaps and confidence stated |
+Must-fix: any uncited or unverifiable claim; invented case study or statistic; client-confidential detail in queries.
+
 ## Understanding Document
 | Dimension | What 5 looks like |
 |---|---|
@@ -16,6 +27,9 @@ Must-fix: invented figures; missing scope boundaries; no open-questions list.
 ## Architecture
 | Dimension | What 5 looks like |
 |---|---|
+| Client-team readability | Written for the client's architects, engineers and security team: their systems and terms, no filler, every acronym explained |
+| Architecture depth | Architecture is the bulk of the document; every component has role, purpose, responsibilities, interfaces, technology, owner, scaling/failure, security, rationale |
+| Flow diagrams | Overview diagram plus one embedded flow diagram per key journey, numbered steps matching a step table; alternate and failure paths described |
 | Traceability | Every component and decision traces to FR/NFR ids |
 | Soundness | Patterns fit sync/async, read/write, HITL needs; capacity estimated |
 | Trade-offs | Major choices have solves / worsens / when-to-change; ADRs recorded |
@@ -23,7 +37,7 @@ Must-fix: invented figures; missing scope boundaries; no open-questions list.
 | Resilience & operability | No unhandled SPOF; fallbacks; DR; observability and SLOs |
 | CSP fidelity | Real, current service names; landing-zone rules respected; on-prem boundary clear |
 | AI governance | Grounding, guardrails, evaluation, human-in-the-loop, model risk |
-Must-fix: direct AI access to systems of record bypassing integration layer (unless justified); no fallback path; invented vendor capabilities; CSP named but generic components used.
+Must-fix: no embedded flow diagram for a key journey; a component without its role and purpose explained; document mostly context rather than architecture; direct AI access to systems of record bypassing integration layer (unless justified); no fallback path; invented vendor capabilities; CSP named but generic components used.
 
 ## Diagram
 | Dimension | What 5 looks like |

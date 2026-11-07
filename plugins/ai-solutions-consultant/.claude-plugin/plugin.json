@@ -1,6 +1,6 @@
 {
   "name": "ai-solutions-consultant",
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "A consulting team in a plugin, fronted by one AI Solutions Lead: send every request to /ai-solutions-lead and it runs discovery, understanding documents, CSP-specific architecture (Azure, AWS, GCP, hybrid) in draw.io with official icons, and executive decks — each deliverable independently reviewed and approved by an MD / Senior Partner agent.",
   "author": {
     "name": "Yash Verma"
