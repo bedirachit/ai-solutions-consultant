@@ -38,6 +38,9 @@ sign off the scope. Write it before the architecture; the architecture cites it.
 
 ## Style
 
+- Explain every system, acronym and option in the sentence where it first appears; never use a bare label.
+- Include a simple current-state and target-state flow diagram near the top, rendered as a picture in the delivered format.
+
 - Plain, specific, client-facing. No marketing language.
 - Tables for inventories (systems, integrations, requirements, risks).
 - Never invent volumes, costs, dates or names — use `[TBC]` placeholders and

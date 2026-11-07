@@ -54,6 +54,7 @@ What the audience should take away: [1 sentence]
 ## Partner lens (apply to everything)
 
 - **So what?** Every page answers a question the audience has.
+- **Can a newcomer follow it?** Every option, system and acronym explained where it first appears; no unexplained labels; diagrams render as pictures.
 - **Is it true?** Facts sourced; assumptions labelled; nothing invented.
 - **Is it consistent?** Same names, numbers and scope across all artifacts.
 - **Is it decidable?** The reader knows what is being asked of them.

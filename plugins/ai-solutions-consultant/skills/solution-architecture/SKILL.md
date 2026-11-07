@@ -45,39 +45,32 @@ a hypothesis that holds until a constraint changes; make the constraints explici
 
 ## Write the Solution Architecture Document for the client's team
 
-The reader is the **client's own team**: their enterprise architects, platform
-and infrastructure engineers, security, application owners and delivery leads.
-They will build, run and approve this. Write so that each of them can answer:
-*what are we building, what does each piece do, how does a request flow through
-it, what do I own, and why was it designed this way?*
+The reader is the **client's own team**: architects, platform and infrastructure
+engineers, security, application owners and delivery leads. Follow
+`assets/architecture-document-template.md` and the seven rules in
+`references/document-writing-guide.md` (based on arc42, the C4 model, Google
+design docs and ISO/IEC/IEEE 42010). The non-negotiables:
 
-- **Architecture first.** At least 60% of the document describes the
-  architecture itself: components, how they interact, flows, deployment,
-  integration, security and operations. Context, research and roadmap stay short.
-- **Their language, their systems.** Name their systems, environments and teams
-  as they do. Explain every acronym once. No consulting filler, no sales tone.
-- **Every component explained.** For each component: role, purpose (the
-  requirement it serves), responsibilities, inputs and outputs, interfaces,
-  technology/service, who owns and operates it, how it scales and fails, and
-  why it was chosen over the alternatives.
-- **Flow diagrams in the document.** Embed diagrams directly in the document,
-  not only as links:
-  1. **Architecture overview diagram** — all components grouped by layer, with
-     numbered interactions.
-  2. **One flow diagram per key journey** (e.g. inbound call, outbound campaign,
-     knowledge publish) — numbered steps; the step table under it names the
-     component, the action, the data and the protocol for each step, so the
-     reader sees each component's role in motion.
-  Draft each as a Mermaid diagram in the document (flowchart or sequence
-  diagram). When the diagram specialist produces draw.io versions, insert the
-  exported image and keep the Open in draw.io link beneath it.
-
-Follow `assets/architecture-document-template.md` section by section. Keep the
-component catalogue and journey flows as the core of the document.
+1. **Explain in place.** Every option, system, product, acronym and team is
+   explained in the sentence where it first appears. Never write "Option B"
+   without saying what Option B is; give options descriptive names.
+2. **Sections 1–2 stand alone.** The problem, then "the solution at a glance":
+   a **simple flow diagram** (5–8 boxes, left to right, plain names, numbered
+   arrows, new parts highlighted) followed by the same steps in numbered
+   sentences, a new-vs-unchanged table, and the recommended approach described
+   by what it is.
+3. **Diagrams render as pictures** in the delivered format — check before
+   delivery (native diagram support in docs tools; PNG/SVG images in Word and
+   PDF; Mermaid only where it renders, e.g. GitHub). Never deliver diagram code
+   that shows as text.
+4. **Architecture is the core**: context diagram, container view, component
+   catalogue, runtime journeys (diagram + step table + failure path),
+   deployment, integration, cross-cutting concerns, quality scenarios.
+5. Run the self-check in the writing guide before sending for review.
 
 When draw.io diagrams are requested, hand `csp-architecture-diagram` the
-component catalogue, groupings (regions, VNets/VPCs, on-prem zone), and the
-numbered edges from the journey flows.
+simple flow, the context view, the container view and each journey, with the
+component list, groupings and numbered edges.
 
 ## Guardrails
 
@@ -91,9 +84,11 @@ numbered edges from the journey flows.
 
 ## Asset
 
-- `assets/architecture-document-template.md` — the Solution Architecture Document template (component catalogue, journey flow diagrams, deployment, integration, security, operations, ADRs).
+- `assets/architecture-document-template.md` — the Solution Architecture Document template.
 
 ## References
+
+- `references/document-writing-guide.md` — the seven writing rules, the research behind the structure, and the pre-review self-check.
 
 - `references/building-blocks.md` — system-design building blocks with when-to-use and stress behavior.
 - `references/ai-integration-patterns.md` — enterprise AI patterns (RAG, agentic tool use, MCP, event-driven, gateway, contact-center AI).

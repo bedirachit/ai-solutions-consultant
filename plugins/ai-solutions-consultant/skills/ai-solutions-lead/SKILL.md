@@ -82,10 +82,11 @@ practice, regulation, risks) and cite it where it shapes a requirement or risk.
 ### 4. Architecture → solution-architect → partner gate
 Brief: framing, the **approved** Understanding Document and Research Brief, CSP
 and landing-zone constraints, NFRs, required views, format. Ask for the
-**Solution Architecture Document** written for the client's own team, with the
-architecture as its core: overview diagram, component catalogue (role and purpose
-of every component) and an embedded flow diagram with a step table for each key
-journey. Ask it to state where it follows or departs from the reference
+**Solution Architecture Document** written for the client's own team, following
+the template and writing guide: Sections 1–2 stand alone with a simple flow
+diagram and the steps in words; every option, system and acronym explained where
+it first appears; architecture as the core; every diagram rendered as a picture
+in the delivered format. Ask it to state where it follows or departs from the reference
 architectures and best practices found. Ask it to also return a diagram spec
 (components, groups, labelled edges, new vs existing, legend) when a diagram follows.
 
@@ -113,6 +114,9 @@ the user, then continue.
 
 Independent agents may run in parallel only when they do not depend on each
 other (e.g. diagram and deck after the architecture is approved).
+
+### 7b. Before delivering any document
+Open the final file and check that every diagram shows as a picture (not as code) and that Section 2 has the simple flow diagram. If not, send it back to the author before delivery.
 
 ### 8. Close
 Ask the partner agent for the cover note, then give the user:

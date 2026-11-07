@@ -1,122 +1,135 @@
 # [Client] — [Solution]: Solution Architecture Document
 
-| Version | Date | Authors | Reviewed by | Status | Audience |
-|---|---|---|---|---|---|
-| 0.1 | [date] | [names] | [partner] | Draft for client architecture review | [Client] enterprise architecture, platform, security, application and delivery teams |
+| Version | Date | Authors | Partner review | Status |
+|---|---|---|---|---|
+| 0.1 | [date] | [names] | [verdict] | Draft for [Client] architecture review |
 
-> **How to read this document.** Section 3 shows the whole solution on one page. Section 4 explains every component. Section 5 walks through each journey step by step. Sections 6–10 cover deployment, integration, security, operations and AI controls. Decisions and their reasons are in Section 11.
+**Who should read what**
 
-## 1. Summary (half a page)
-- What we are building and for whom, in three sentences.
-- What is new and what stays as it is.
-- The three design choices that matter most, each in one line with its reason.
+| If you are… | Read |
+|---|---|
+| A sponsor or manager | 1, 2, 5 |
+| An enterprise or solution architect | Everything |
+| A platform / infrastructure engineer | 2, 7, 8, 9, 10 |
+| Security, risk or compliance | 2, 4, 11, 13 |
+| An application or integration owner | 2, 7, 8, 10 |
 
-## 2. Scope, requirements and principles
-- In scope / out of scope for this release (link to the Understanding Document).
-- Requirements this architecture satisfies: table of FR/NFR ids → section where each is addressed.
-- Architecture principles (5–7), each with what it means in practice here.
+> Writing rule for this document: **every name, option, acronym and system is explained the first time it appears, in that same sentence.** Nothing refers to a section the reader has not reached yet.
 
-## 3. Architecture overview
+---
 
-```mermaid
-flowchart LR
-    subgraph CH[Channels]
-      C1[Customer phone]
-    end
-    subgraph TEL[Telephony - on-prem, existing]
-      T1[Contact center platform]
-      T2[Session border controller]
-    end
-    subgraph AI[Conversational AI - new]
-      A1[Voice bot]
-      A2[Agent assist]
-    end
-    subgraph INT[Integration - existing]
-      I1[API gateway / integration layer]
-    end
-    subgraph SOR[Systems of record - existing]
-      S1[CRM]
-      S2[Card platform]
-    end
-    C1 -->|1 call| T1 -->|2 SIP/RTP| T2 -->|3| A1
-    A1 -->|4 REST| I1 --> S2
-    I1 --> S1
-```
-*Figure 1 — Architecture overview. Numbers match Section 5.* [Replace with the solution's components; insert the draw.io export here when available, with its Open in draw.io link.]
+## 1. The problem and what this solution must achieve
+*(Plain words, half a page. A reader who stops here knows why this exists.)*
 
-One paragraph per layer: what the layer is for and which components sit in it.
+- **Today:** how the process works now and what is wrong with it, in 3–5 sentences.
+- **Goals:** what must be true when this is live (measurable where possible, `[TBC]` where not).
+- **Non-goals:** what this solution deliberately does not do in this release.
 
-## 4. Component catalogue
-Repeat for each component (new and existing ones the solution depends on).
+## 2. The solution at a glance
+*(The most important page. A new team member can explain the solution after reading only this section.)*
 
-### 4.n [Component name] — [new | existing | changed]
+**2.1 How it works — simple flow**
+
+One sentence telling the reader what the picture shows, then the picture.
+
+[Simple flow diagram — mandatory, rendered as a picture, not as code:
+ left to right, 5–8 boxes, plain names ("Customer", "Contact center", "AI voice bot", "Integration layer", "Card system", "CRM"), one numbered arrow per step, new components highlighted, a one-line legend.]
+
+**2.2 The same flow in words** — one numbered line per arrow:
+1. The customer calls the service number; the **contact center platform** (the bank's existing telephony system that answers and routes calls) receives the call.
+2. …
+
+**2.3 What is new and what stays the same**
+
+| Component | New / changed / unchanged | In one line: what it does |
+|---|---|---|
+
+**2.4 The recommended approach in one paragraph** — describe the chosen approach by what it *is* (e.g. "the AI platform runs inside the bank's own Azure subscription, reached only through private network links"), never by a label alone. If options were compared, say which ones in a few words each, and why this one won; details are in Section 5.
+
+## 3. Context and scope (who and what the solution interacts with)
+System context diagram (C4 level 1): the solution as one box in the middle; people and external systems around it; each arrow labelled with what passes between them.
+
+| Actor / system | Who or what it is | What it exchanges with the solution |
+|---|---|---|
+
+## 4. Constraints we must work within
+Facts that are already decided and shape the design (landing zone rules, systems that must stay on-prem, regulation, mandated platforms, budget, dates). One line each, with where it comes from.
+
+## 5. Options considered and the recommendation
+*(Only when there was a real choice. Give every option a descriptive name; letters are secondary.)*
+
+For each option:
+
+**Option A — [descriptive name, e.g. "Vendor-hosted SaaS"]**
+- **What it is:** 2–3 sentences in plain words, including where it runs and who operates it.
+- **Small diagram** of how it differs (optional but recommended).
+- **Strengths / weaknesses** for this client.
+- **Cost, effort and risk** (indicative; `[TBC]` if unknown).
+
+**Comparison**
+
+| Criterion | Vendor-hosted SaaS (A) | In bank's Azure tenancy (B) | … |
+|---|---|---|---|
+
+**Recommendation:** the option by name *and* description, and the 2–3 reasons that decided it.
+
+## 6. Solution strategy — the key design decisions in plain words
+5–8 bullets: each decision, what it means in practice, and why. (e.g. "All AI model calls go through the bank's AI gateway — the single controlled entry point to Azure AI services — so usage is logged, metered and filtered.")
+
+## 7. Building blocks
+**7.1 Container view** (C4 level 2): the deployable parts of the solution and the existing systems they connect to, grouped by layer, numbered arrows. Rendered as a picture; draw.io with official cloud icons when a CSP applies.
+
+**7.2 Component catalogue** — one block per component:
+
 | | |
 |---|---|
-| **Role** | What it is in this solution, in one sentence |
-| **Purpose** | The business or technical need it serves (FR/NFR ids) |
-| **Responsibilities** | 3–6 bullets: what it does and, importantly, what it does not do |
-| **Inputs / outputs** | Data it receives and produces |
-| **Interfaces** | Systems it talks to, protocol, direction, authentication |
-| **Technology / service** | Product or cloud service, SKU/tier if decided, region |
-| **Owned and operated by** | Team at [Client] or vendor |
-| **Scaling and resilience** | How it scales, what happens when it fails, fallback |
-| **Security** | Identity, network placement, data it holds, encryption |
-| **Why this choice** | Reason, and the alternative(s) considered (see ADR-n) |
+| **What it is** | Plain-language description; product/service name explained |
+| **Why it is here** | The goal or requirement it serves |
+| **What it does / does not do** | 3–6 bullets |
+| **Talks to** | Systems, direction, protocol, authentication |
+| **Runs on / owned by** | Hosting, environment, team that operates it |
+| **When it is busy or fails** | Scaling behaviour, failure impact, fallback |
+| **Security** | Identity, network placement, data held |
 
-## 5. Key journeys and flows
-Repeat for each key journey (2–4).
+## 8. How it works at runtime — key journeys
+For each of the 2–4 most important journeys:
 
-### 5.n [Journey name, e.g. "Inbound card-servicing call"]
+- One sentence on the journey and when it happens.
+- **Flow diagram** (sequence diagram), numbered steps, rendered as a picture.
+- **Step table:**
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Customer
-    participant CC as Contact center platform
-    participant SBC as Session border controller
-    participant Bot as Voice bot
-    participant API as Integration layer
-    participant Card as Card platform
-    Customer->>CC: Calls service number
-    CC->>SBC: Routes call (SIP)
-    SBC->>Bot: Media + signalling (SIP/RTP)
-    Bot->>API: Get card status (REST, OAuth2)
-    API->>Card: Read account (read-only)
-    Card-->>Bot: Status
-    Bot-->>Customer: Answers
-```
-*Figure 5.n — [Journey] flow.* [Replace with the real journey.]
-
-| Step | Component | What happens | Data | Protocol / auth |
+| Step | Who / which component | What happens | Data | How (protocol, auth) |
 |---|---|---|---|---|
-| 1 | | | | |
 
-**Alternate and failure paths:** what happens when the bot cannot resolve the request, a system is down, the customer asks for an agent.
+- **When things go wrong:** what the customer and agent experience if a step fails, and the fallback.
 
-## 6. Deployment view
-Environments (dev / test / prod), regions, networks and subnets, private connectivity, what runs on-prem vs cloud vs vendor SaaS. Include the CSP deployment diagram (official icons) when produced.
+## 9. Deployment
+Where everything runs: environments, regions, networks and subnets, private connections, on-prem vs cloud vs vendor. Deployment diagram with official cloud icons. Explain each network zone in one line.
 
-## 7. Integration view
-| # | From → To | Purpose | Pattern | Protocol | Auth | Data | Volume / latency | Owner |
-|---|---|---|---|---|---|---|---|---|
+## 10. Integration
+| # | From → to | Why | How (pattern, protocol) | Authentication | Data | Volume / latency | Owner |
+|---|---|---|---|---|---|---|---|
 
-## 8. Security and compliance
-Identity and access, network security, data protection, secrets, logging and audit, compliance mapping (regulation → control → where implemented).
+## 11. Cross-cutting concerns
+- **Security and privacy** — identity, network, encryption, secrets, data minimisation, audit.
+- **Compliance** — regulation → control → where in this design.
+- **Operations** — monitoring, alerting, support model, runbooks.
+- **AI governance** (if applicable) — model access path, grounding and knowledge sources, guardrails, evaluation, human oversight.
 
-## 9. Non-functional design and operations
-Capacity estimate (with the arithmetic), scalability, availability and DR (RTO/RPO), performance budget per journey, observability (metrics, logs, traces, SLOs, alerts), support model and runbooks.
+## 12. Quality requirements as scenarios
+| Quality | Scenario ("When…, the system…, within…") | How the design achieves it |
+|---|---|---|
+| Availability | When the AI platform is unavailable, calls route to the IVR within 5 s | Health-checked routing in the contact center |
 
-## 10. AI design and governance (if applicable)
-Models and access path (AI gateway), grounding and knowledge sources, guardrails, evaluation approach and metrics, human-in-the-loop, model risk management.
+## 13. Decisions log
+| Decision | Options considered (named and described) | Chosen | Why | Consequences |
+|---|---|---|---|---|
 
-## 11. Architecture decisions
-ADR table: decision, options considered, choice, reason, consequences. Note where the design follows or departs from the reference architectures in the Research Brief.
+## 14. Risks, assumptions and open questions
+Tables with ids, owner, date and what happens if unresolved.
 
-## 12. Risks, assumptions and open questions
-Tables with ids, owners and dates.
-
-## 13. Implementation roadmap
+## 15. Roadmap
 Phases with scope, dependencies and exit criteria.
 
-## Appendix
-Glossary, references (Research Brief sources), detailed diagrams.
+## 16. Glossary
+Every acronym and product name used, in one line each.

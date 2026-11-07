@@ -27,9 +27,11 @@ Must-fix: invented figures; missing scope boundaries; no open-questions list.
 ## Architecture
 | Dimension | What 5 looks like |
 |---|---|
-| Client-team readability | Written for the client's architects, engineers and security team: their systems and terms, no filler, every acronym explained |
+| Self-contained explanations | Every option, system, product and acronym explained where it first appears; no bare labels ("Option B") or forward references in Sections 1–2 |
+| Client-team readability | Written for the client's architects, engineers and security team: their systems and terms, no filler |
 | Architecture depth | Architecture is the bulk of the document; every component has role, purpose, responsibilities, interfaces, technology, owner, scaling/failure, security, rationale |
-| Flow diagrams | Overview diagram plus one embedded flow diagram per key journey, numbered steps matching a step table; alternate and failure paths described |
+| Simple flow diagram | Section 2 opens with a simple flow (5–8 boxes, plain names, numbered arrows) **visible as a picture**, followed by the steps in words |
+| Journey flows | One rendered flow diagram per key journey, numbered steps matching a step table; failure paths described |
 | Traceability | Every component and decision traces to FR/NFR ids |
 | Soundness | Patterns fit sync/async, read/write, HITL needs; capacity estimated |
 | Trade-offs | Major choices have solves / worsens / when-to-change; ADRs recorded |
@@ -37,7 +39,7 @@ Must-fix: invented figures; missing scope boundaries; no open-questions list.
 | Resilience & operability | No unhandled SPOF; fallbacks; DR; observability and SLOs |
 | CSP fidelity | Real, current service names; landing-zone rules respected; on-prem boundary clear |
 | AI governance | Grounding, guardrails, evaluation, human-in-the-loop, model risk |
-Must-fix: no embedded flow diagram for a key journey; a component without its role and purpose explained; document mostly context rather than architecture; direct AI access to systems of record bypassing integration layer (unless justified); no fallback path; invented vendor capabilities; CSP named but generic components used.
+Must-fix: no simple flow diagram near the top, or any diagram showing as code instead of a picture; an option, system or acronym used before it is explained; no flow diagram for a key journey; a component without its role and purpose explained; document mostly context rather than architecture; direct AI access to systems of record bypassing integration layer (unless justified); no fallback path; invented vendor capabilities; CSP named but generic components used.
 
 ## Diagram
 | Dimension | What 5 looks like |
