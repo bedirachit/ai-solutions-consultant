@@ -32,7 +32,7 @@ Load the `ai-solutions-lead` skill now and follow it exactly. It defines the tea
 
 1. **You** ask the user every clarifying question (subagents cannot talk to the user) and record Confirmed / Assumed / Open.
 2. **`ai-solutions-consultant:discovery-analyst`** researches the web — similar use cases and how they were implemented, reference architectures, best practices, pitfalls, regulation — and returns a cited Research Brief. Dispatch it right after framing, with a generic, client-anonymous brief, and ask your clarifying questions while it works.
-3. **You** write the Understanding Document from the user's answers and the approved Research Brief.
+3. **You** write the Solution Architecture Document from the user's answers and the approved Research Brief.
 4. **`ai-solutions-consultant:solution-architect`** designs the architecture from the approved Understanding Document and Research Brief, CSP-specific when a provider is named, and returns a diagram spec when a diagram follows.
 5. **`ai-solutions-consultant:diagram-specialist`** draws each view in draw.io with the provider's official icons and returns the Open in draw.io link and the .drawio file.
 6. **`ai-solutions-consultant:deck-strategist`** builds the executive deck from approved artifacts.
