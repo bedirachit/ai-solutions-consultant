@@ -200,7 +200,6 @@ plugins/ai-solutions-consultant/
 ├── examples/requests.md               copy-paste requests
 └── skills/
     ├── ai-solutions-lead/             the front door: team workflow, briefs, review routing
-    ├── solution-engagement/           legacy alias that redirects to the lead
     ├── discovery-questions/           question bank by dimension
     ├── understanding-document/        document template
     ├── solution-architecture/         building blocks, AI patterns, CSP service map, trade-offs, security
