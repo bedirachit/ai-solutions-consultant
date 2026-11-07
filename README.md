@@ -192,4 +192,4 @@ The system-design and AI-integration guidance is condensed and rewritten from id
 
 ## License
 
-[MIT](LICENSE) © 2026 Yash Verma
+[MIT](LICENSE) © 2026 Rachit Bedi
