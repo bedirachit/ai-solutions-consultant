@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "draw.io": {
+      "type": "http",
+      "url": "https://mcp.draw.io/mcp"
+    }
+  },
+  "recommendedCategories": [
+    "documents",
+    "wiki-knowledge-base",
+    "design-graphics",
+    "software-coding"
+  ]
+}

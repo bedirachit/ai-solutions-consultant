@@ -1,0 +1,25 @@
+{
+  "name": "ai-solutions-consultant",
+  "version": "0.1.0",
+  "description": "A consulting team in a plugin: discovery and clarifying questions, a detailed understanding document, CSP-specific solution architecture (Azure, AWS, GCP, on-prem/hybrid) drawn in draw.io with official icons, and executive decks — every artifact reviewed and approved by an MD / Senior Partner coordinator before it reaches you.",
+  "author": {
+    "name": "Yash Verma"
+  },
+  "license": "MIT",
+  "keywords": [
+    "solution-architecture",
+    "consulting",
+    "ai-integration",
+    "system-design",
+    "azure",
+    "aws",
+    "gcp",
+    "drawio",
+    "executive-deck",
+    "review"
+  ],
+  "icon": ".claude-plugin/icon.png",
+  "homepage": "https://github.com/bedirachit/ai-solutions-consultant",
+  "repository": "https://github.com/bedirachit/ai-solutions-consultant",
+  "privacyPolicyUrl": "https://github.com/bedirachit/ai-solutions-consultant/blob/main/PRIVACY.md"
+}
