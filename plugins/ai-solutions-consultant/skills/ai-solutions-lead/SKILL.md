@@ -60,7 +60,7 @@ stages needed for what was asked; offer the others in one line.
 
 ### 2. Clarify (you)
 Load `discovery-questions`. Ask the design-changing questions with
-AskUserQuestion: ≤ 4 per round, 2–4 options each, recommended first, at most
+AskUserQuestion: ≤ 10 per round, 2–4 options each, recommended first, at most
 two rounds. Skip anything already answered. Record **Confirmed / Assumed / Open**.
 
 ### 3. Understanding Document → discovery-analyst → partner gate

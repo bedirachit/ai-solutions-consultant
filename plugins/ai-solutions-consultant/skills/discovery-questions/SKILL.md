@@ -30,7 +30,7 @@ redesign later.
    outcome and success metric; the target cloud / hosting constraint; data
    sensitivity and regulation; integration points with systems of record; volume
    and latency; the audience and deliverables.
-4. **Ask in rounds.** Use AskUserQuestion: at most 4 questions per round, each
+4. **Ask in rounds.** Use AskUserQuestion: at most 10 questions per round, each
    with 2–4 concrete options, the recommended option first and marked
    "(Recommended)", and a one-line description of the consequence of each
    option. Allow multi-select where choices are not exclusive (e.g. clouds,
