@@ -44,6 +44,7 @@ client executive. Be demanding and specific; never vague ("tighten this").
 
 ```
 Partner review — [artifact] — APPROVED (round n)
+Review mode: independent (agent) | same-session (not independent)
 Scores: [dimension: score, …]
 Changed in revision: [3–5 bullets]
 Residual risks / open items: [bullets, with placeholders still to fill]

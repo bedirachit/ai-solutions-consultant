@@ -5,13 +5,13 @@
 <h1 align="center">AI Solutions Consultant</h1>
 
 <p align="center">
-  <b>A consulting team inside Claude: discovery, architecture, draw.io diagrams and C-suite decks.</b><br/>
-  Every deliverable is reviewed and signed off by an MD / Senior Partner agent before you see it.
+  <b>A consulting team inside Claude, with one front door: <code>/ai-solutions-lead</code></b><br/>
+  Discovery, architecture, draw.io diagrams and C-suite decks, each signed off by an MD / Senior Partner agent before you see it.
 </p>
 
 <p align="center">
   <img alt="Claude Cowork plugin" src="https://img.shields.io/badge/Claude-Cowork%20plugin-D97757"/>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-1E4FD8"/>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-1E4FD8"/>
   <img alt="Clouds" src="https://img.shields.io/badge/clouds-Azure%20%7C%20AWS%20%7C%20GCP%20%7C%20Hybrid-0B1F4D"/>
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green"/>
 </p>
@@ -22,7 +22,9 @@
 
 Architecture work for a client usually means four people and two weeks: someone runs discovery, an architect designs, someone else draws it in Visio or draw.io, and an engagement manager turns it into a deck the CIO will read. Then a partner tears it apart and it all goes round again.
 
-This plugin puts that whole team into Claude, with the partner's quality gate built in. You describe the problem; it asks the questions a good consultant would ask, then produces the documents, the cloud diagrams and the deck. Each one passes a partner review before it reaches you.
+This plugin puts that whole team into Claude, with the partner's quality gate built in. You talk to **one person, the AI Solutions Lead**. It asks the questions a good consultant would ask, assigns the work to the right specialists, and gets every deliverable through partner review before handing it to you.
+
+> **One rule:** send every request to **`/ai-solutions-lead`**. You never need to call the other agents yourself.
 
 ## What you get
 
@@ -39,29 +41,27 @@ This plugin puts that whole team into Claude, with the partner's quality gate bu
 
 ```mermaid
 flowchart LR
-    U([You: the problem]) --> P{{MD / Senior Partner<br/>frames the engagement}}
-    P --> D[Discovery Analyst<br/>clarifying questions]
-    D --> UD[Understanding<br/>Document]
-    UD --> R1{Partner<br/>review}
-    R1 -- revise --> UD
-    R1 -- approved --> A[Solution Architect<br/>CSP-specific design]
-    A --> R2{Partner<br/>review}
-    R2 -- revise --> A
-    R2 -- approved --> G[Diagram Specialist<br/>draw.io + official icons]
-    R2 -- approved --> K[Deck Strategist<br/>C-suite deck]
-    G --> R3{Partner<br/>review}
-    K --> R4{Partner<br/>review}
-    R3 -- approved --> OUT([Approved deliverables<br/>+ partner cover note])
-    R4 -- approved --> OUT
+    U([You]) -->|/ai-solutions-lead| L{{AI Solutions Lead<br/>frames · asks questions · assigns}}
+    L --> D[Discovery Analyst<br/>Understanding Document]
+    L --> A[Solution Architect<br/>CSP-specific architecture]
+    L --> G[Diagram Specialist<br/>draw.io + official icons]
+    L --> K[Deck Strategist<br/>C-suite deck]
+    D & A & G & K --> P{MD / Senior Partner<br/>independent review}
+    P -- REVISE: numbered fixes --> L
+    P -- APPROVED --> L
+    L -->|approved deliverables<br/>+ partner cover note| U
 ```
 
-Only the stages you ask for run. Ask for a diagram and you get a diagram, not an unrequested deck.
+The lead runs the stages in order (understanding document → architecture → diagrams and deck), and each stage builds only on approved work. Only the stages you ask for run: ask for a diagram and you get a diagram, not an unrequested deck.
+
+**A real agent team, every time.** Selecting `/ai-solutions-lead` is your request to run the team, so the lead never asks whether to use agents. Its first message confirms the mode. If agents can't run in your environment, it says so in that first message and marks every review note `same-session (not independent)`; you're never told after delivery.
 
 ## The team
 
 | Agent | Plays the role of | Owns |
 |---|---|---|
-| 🎩 **md-senior-partner** | MD / Senior Partner at a top-tier strategy and technology firm | Framing, dispatching the team, reviewing and approving every artifact, consistency across deliverables, the closing cover note |
+| 🧭 **ai-solutions-lead** | Engagement lead: **your only point of contact** | Framing, every clarifying question, assigning work, routing reviews and revisions, delivering approved work |
+| 🎩 **md-senior-partner** | MD / Senior Partner at a top-tier strategy and technology firm | Independent review and approval of every artifact, consistency across deliverables, the closing cover note |
 | 🔎 **discovery-analyst** | Senior consultant | Clarifying questions and the Understanding Document |
 | 🏗️ **solution-architect** | Principal enterprise and cloud architect | Logical and CSP-specific architecture, AI-integration patterns, NFRs, security, ADRs |
 | 🗺️ **diagram-specialist** | Architecture visualization lead | draw.io diagrams with official provider icons, Open in draw.io link |
@@ -109,31 +109,77 @@ The plugin never draws a cloud service as a plain box when an official icon exis
      /plugin install ai-solutions-consultant --marketplace bedirachit/ai-solutions-consultant
      ```
 2. **Connect draw.io** in Settings → Connectors. This is recommended for inline previews and icon search. Without it the plugin still produces the `.drawio` file and the open link.
-3. **Start a task** and describe the problem.
+3. **Start a task**, type **`/ai-solutions-lead`** and describe the problem. In Claude Code you can also run the lead as the main agent: `claude --agent ai-solutions-consultant:ai-solutions-lead`.
 
-## Try saying
+## Examples
 
-> *Act as my AI solutions consultant. A retail bank wants a voice bot for credit card service calls on Azure, integrated with its on-prem contact center. I need an understanding document, the target architecture with an Azure diagram, and a deck for the CIO.*
+Every request starts with `/ai-solutions-lead`. More in [examples/requests.md](examples/requests.md).
 
-> *Ask me what you need to know, then design an AWS architecture for a RAG assistant over our policy documents.*
+**Full engagement**
+```
+/ai-solutions-lead
+A retail bank wants an AI voice bot for credit card servicing calls. It runs an
+on-prem contact center and an Azure AI landing zone where all models go through
+an AI gateway. I need an understanding document, the Azure target architecture
+with an Azure diagram, and a 10-slide deck for the CIO and COO.
+```
 
-> *Draw the current vs proposed inbound call flow in draw.io.*
+**Understanding document from notes**
+```
+/ai-solutions-lead
+Turn the attached workshop notes into an understanding document for the CTO to confirm. Word format.
+```
 
-> *Review this deck like a senior partner before it goes to the COO.*
+**CSP architecture with diagram**
+```
+/ai-solutions-lead
+Design an AWS architecture for an HR/IT policy assistant over SharePoint documents,
+8,000 employees, Entra ID SSO, data in ap-south-1. Include the AWS diagram.
+```
 
-> *Compare running the vendor as SaaS versus inside our GCP project, and write the ADR.*
+**Diagram only**
+```
+/ai-solutions-lead
+Draw the current vs proposed inbound call flow in draw.io: [describe both flows].
+```
+
+**Decision and ADR**
+```
+/ai-solutions-lead
+Our AI vendor offers SaaS or deployment into our GCP project. Compare them for a regulated bank and write the ADR.
+```
+
+**Partner review of your own work**
+```
+/ai-solutions-lead
+Review the attached deck like a senior partner before it goes to the COO. Be tough.
+```
+
+### What a full engagement looks like
+
+| Step | Who works | What you see |
+|---|---|---|
+| 0 | AI Solutions Lead | "Running as an agent team…" and the stages it will run |
+| 1 | AI Solutions Lead | 3–4 multiple-choice questions that change the design |
+| 2 | Discovery Analyst → Partner | Understanding Document + review note |
+| 3 | Solution Architect → Partner | Architecture write-up with ADRs + review note |
+| 4 | Diagram Specialist → Partner | draw.io diagram, **Open in draw.io** link, `.drawio` file + review note |
+| 5 | Deck Strategist → Partner | Executive deck + review note |
+| 6 | AI Solutions Lead | Partner cover note: three takeaways, open questions, decisions required, placeholders to fill |
 
 ## Skills inside
 
-| Skill | Triggers on |
+The specialists load these skills themselves; you only ever call `/ai-solutions-lead`.
+
+| Skill | Used by |
 |---|---|
-| `solution-engagement` | "Act as my solutions consultant", "run the full engagement" |
-| `discovery-questions` | "What do you need to know", "scope this", "clarify requirements" |
-| `understanding-document` | "Understanding document", "requirements understanding", "as-is / to-be" |
-| `solution-architecture` | "Target architecture", "Azure / AWS / GCP architecture", "trade-offs", "NFRs" |
-| `csp-architecture-diagram` | "Draw the architecture", "draw.io", "official cloud icons", "deployment diagram" |
-| `executive-deck` | "Deck", "slides", "PPT", "C-suite / board presentation" |
-| `partner-review` | "Review like a partner", "is this C-suite ready" |
+| `ai-solutions-lead` | **The front door.** Turns the session into the AI Solutions Lead and runs the team |
+| `discovery-questions` | AI Solutions Lead (clarifying questions) |
+| `understanding-document` | Discovery Analyst |
+| `solution-architecture` | Solution Architect |
+| `csp-architecture-diagram` | Diagram Specialist |
+| `executive-deck` | Deck Strategist |
+| `partner-review` | MD / Senior Partner |
 
 ## Principles the team works by
 
@@ -150,9 +196,11 @@ The plugin never draws a cloud service as a plain box when an official icon exis
 plugins/ai-solutions-consultant/
 ├── .claude-plugin/plugin.json         plugin manifest + icon
 ├── .mcp.json                          draw.io connector
-├── agents/                            md-senior-partner + 4 specialists
+├── agents/                            ai-solutions-lead, md-senior-partner + 4 specialists
+├── examples/requests.md               copy-paste requests
 └── skills/
-    ├── solution-engagement/           end-to-end workflow and review gates
+    ├── ai-solutions-lead/             the front door: team workflow, briefs, review routing
+    ├── solution-engagement/           legacy alias that redirects to the lead
     ├── discovery-questions/           question bank by dimension
     ├── understanding-document/        document template
     ├── solution-architecture/         building blocks, AI patterns, CSP service map, trade-offs, security
@@ -171,6 +219,12 @@ Yes. Name the template or design system and the deck strategist builds with it.
 
 **Is my data sent anywhere?**
 The plugin itself collects nothing. Content goes only to Claude and to the connectors you choose. See [PRIVACY.md](PRIVACY.md). Open in draw.io links carry the diagram inside the URL, so don't share links to confidential diagrams.
+
+**Why must I go through `/ai-solutions-lead`?**
+It's the only role that can ask you questions and assign work. Specialists start with no context and can't talk to you, so the lead briefs them, routes reviews and stops anything unapproved from reaching you. Selecting it is also your explicit request to run the agent team.
+
+**What if agents can't run in my environment?**
+The lead says so in its first message, does each role itself, and labels every review note `same-session (not independent)`.
 
 **Can I change the partner's bar?**
 Yes. Edit `skills/partner-review/references/scorecards.md` to change the dimensions, the approval threshold or the must-fix list.
