@@ -20,7 +20,7 @@
 
 ## Why this exists
 
-Architecture work for a client usually means four people and two weeks: someone runs discovery, an architect designs, someone else draws it in Visio or draw.io, and an engagement manager turns it into a deck the CIO will read. Then a partner tears it apart and it all goes round again.
+Architecture work for a client usually means four people and two weeks: someone runs discovery, an architect designs, someone else draws it in Visio or draw.io, and an engagement manager turns it into a deck the CEO/CIO will read. Then a partner tears it apart and it all goes round again.
 
 This plugin puts that whole team into Claude, with the partner's quality gate built in. You talk to **one person, the AI Solutions Lead**. It asks the questions a good consultant would ask, assigns the work to the right specialists, and gets every deliverable through partner review before handing it to you.
 
