@@ -75,9 +75,10 @@ Runs: light clarify → diagram-specialist → partner gate. Output: two-panel f
 ```
 /ai-solutions-lead
 Our conversational AI vendor offers SaaS or deployment into our GCP project.
-Compare the two for a regulated bank and recommend one, with an ADR.
+Compare the two for a regulated bank and recommend one in an Options Paper,
+with an ADR.
 ```
-Runs: research (published comparisons, regulator guidance) + clarify → solution-architect (options table + ADR) → partner gate.
+Runs: research (published comparisons, regulator guidance) + clarify → solution-architect (separate Options Paper + ADR; the architecture document later describes only the chosen option) → partner gate.
 
 ---
 

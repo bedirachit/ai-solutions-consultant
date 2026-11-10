@@ -1,135 +1,202 @@
-# [Client] — [Solution]: Solution Architecture Document
+<!--
+TEMPLATE NOTES (instructions for the author; never copy these notes or any
+bracketed guidance into the delivered document).
 
-| Version | Date | Authors | Partner review | Status |
-|---|---|---|---|---|
-| 0.1 | [date] | [names] | [verdict] | Draft for [Client] architecture review |
+- This is the CLIENT-READY Solution Architecture Document. It describes the
+  proposed solution only. Do not include options that were rejected, option
+  comparisons or scoring. Record only the decisions taken, in Appendix D.
+- Length: 15-20 pages including figures and tables (about 4,500-6,500 words of
+  body text). Use the page budget below.
+- Headings: use the headings below exactly, or a client-specific noun phrase.
+  Never a heading that describes the writing task ("in one paragraph",
+  "at a glance", "in plain words", "simple flow").
+- Every section opens with a 2-3 sentence key message (the conclusion first),
+  then the supporting detail.
+- Number every figure and table, give each a caption and, where relevant, a
+  source line.
 
-**Who should read what**
-
-| If you are… | Read |
+PAGE BUDGET
+| Section | Pages |
 |---|---|
-| A sponsor or manager | 1, 2, 5 |
-| An enterprise or solution architect | Everything |
-| A platform / infrastructure engineer | 2, 7, 8, 9, 10 |
-| Security, risk or compliance | 2, 4, 11, 13 |
-| An application or integration owner | 2, 7, 8, 10 |
+| Cover, document control, contents | 2 |
+| 1 Executive summary | 1 |
+| 2 Context and objectives | 1 |
+| 3 Solution overview | 2 |
+| 4 Solution architecture | 4 |
+| 5 Key journeys | 3 |
+| 6 Integration | 1 |
+| 7 Deployment and infrastructure | 1.5 |
+| 8 Security, compliance and AI governance | 1.5 |
+| 9 Non-functional requirements | 1 |
+| 10 Operations and support | 0.5 |
+| 11 Implementation roadmap | 1 |
+| 12 Risks, assumptions and dependencies | 1 |
+| Appendices | 1-2 |
+-->
 
-> Writing rule for this document: **every name, option, acronym and system is explained the first time it appears, in that same sentence.** Nothing refers to a section the reader has not reached yet.
+# [Client name]
+# [Solution name]
+## Solution Architecture Document
+
+[Version] · [Date] · [Classification, e.g. Confidential — for [Client] internal use]
 
 ---
 
-## 1. The problem and what this solution must achieve
-*(Plain words, half a page. A reader who stops here knows why this exists.)*
+### Document control
 
-- **Today:** how the process works now and what is wrong with it, in 3–5 sentences.
-- **Goals:** what must be true when this is live (measurable where possible, `[TBC]` where not).
-- **Non-goals:** what this solution deliberately does not do in this release.
+| Version | Date | Author | Reviewer | Changes |
+|---|---|---|---|---|
+| 1.0 | | | | Issued for client review |
 
-## 2. The solution at a glance
-*(The most important page. A new team member can explain the solution after reading only this section.)*
+| Approver | Role | Signature / date |
+|---|---|---|
+| | | |
 
-**2.1 How it works — simple flow**
+### Contents
 
-One sentence telling the reader what the picture shows, then the picture.
+[Generate a real table of contents: a TOC field in Word, the document tool's
+index or outline in a living doc, a linked list of sections in Markdown.]
 
-[Simple flow diagram — mandatory, rendered as a picture, not as code:
- left to right, 5–8 boxes, plain names ("Customer", "Contact center", "AI voice bot", "Integration layer", "Card system", "CRM"), one numbered arrow per step, new components highlighted, a one-line legend.]
+---
 
-**2.2 The same flow in words** — one numbered line per arrow:
-1. The customer calls the service number; the **contact center platform** (the bank's existing telephony system that answers and routes calls) receives the call.
-2. …
+## 1. Executive summary
 
-**2.3 What is new and what stays the same**
+[Key message: what [Client] will build, the outcome it delivers, and the one or
+two design choices that matter most. Then 4-6 short paragraphs or bullets:
+business need, proposed solution, what changes and what stays, key benefits,
+key risks and how they are managed, decisions or approvals required.]
 
-| Component | New / changed / unchanged | In one line: what it does |
+## 2. Context and objectives
+
+### 2.1 Background
+### 2.2 Objectives and success measures
+| Objective | Measure | Target |
+|---|---|---|
+### 2.3 Scope
+| In scope | Out of scope |
+|---|---|
+
+## 3. Solution overview
+
+[Key message.]
+
+**Figure 1 — Solution overview**
+[Simple flow diagram: 5-8 boxes, left to right, the client's names for systems,
+numbered arrows, new components highlighted, legend. Rendered as a picture.]
+
+### 3.1 How the solution works
+[Numbered steps matching the numbers in Figure 1, one sentence each.]
+
+### 3.2 What changes for [Client]
+**Table 1 — New, changed and unchanged components**
+| Component | Status | Role |
 |---|---|---|
 
-**2.4 The recommended approach in one paragraph** — describe the chosen approach by what it *is* (e.g. "the AI platform runs inside the bank's own Azure subscription, reached only through private network links"), never by a label alone. If options were compared, say which ones in a few words each, and why this one won; details are in Section 5.
+## 4. Solution architecture
 
-## 3. Context and scope (who and what the solution interacts with)
-System context diagram (C4 level 1): the solution as one box in the middle; people and external systems around it; each arrow labelled with what passes between them.
+### 4.1 Architecture principles
+**Table 2 — Architecture principles**
+| Principle | What it means for this solution |
+|---|---|
 
-| Actor / system | Who or what it is | What it exchanges with the solution |
+### 4.2 Logical architecture
+**Figure 2 — Logical architecture**
+[Layers and components; rendered picture; draw.io with official cloud icons
+where a cloud provider applies; "Open in draw.io" link under the image.]
+
+[One paragraph per layer.]
+
+### 4.3 Component descriptions
+[One sub-section per component, 4.3.1, 4.3.2 … each with a short paragraph and
+this table.]
+
+| Attribute | Description |
+|---|---|
+| Purpose | |
+| Responsibilities | |
+| Interfaces | |
+| Technology | |
+| Hosting and ownership | |
+| Scaling and resilience | |
+| Security | |
+
+## 5. Key journeys
+
+[Key message. One sub-section per journey, 5.1, 5.2 …]
+
+### 5.1 [Journey name, e.g. Inbound credit card enquiry]
+**Figure 3 — [Journey name] flow**
+[Sequence or flow diagram, rendered picture.]
+
+**Table 3 — [Journey name] steps**
+| Step | Component | Action | Data | Protocol / authentication |
+|---|---|---|---|---|
+
+**Exception handling.** [What happens when a step fails and the fallback.]
+
+## 6. Integration
+
+**Table 4 — Integration catalogue**
+| ID | Source | Target | Purpose | Pattern / protocol | Authentication | Data | Volume / latency | Owner |
+|---|---|---|---|---|---|---|---|---|
+
+## 7. Deployment and infrastructure
+
+**Figure 4 — Deployment view**
+[Environments, regions, network zones, private connectivity, on-premises vs
+cloud vs vendor-hosted; official cloud icons.]
+
+### 7.1 Environments
+### 7.2 Network and connectivity
+### 7.3 Hosting and capacity
+
+## 8. Security, compliance and AI governance
+
+### 8.1 Identity and access
+### 8.2 Network security
+### 8.3 Data protection
+### 8.4 Regulatory compliance
+**Table 5 — Compliance mapping**
+| Requirement | Control | Where implemented |
 |---|---|---|
+### 8.5 AI governance
+[Model access path, knowledge governance, guardrails, evaluation, human
+oversight. Omit 8.5 if the solution has no AI component.]
 
-## 4. Constraints we must work within
-Facts that are already decided and shape the design (landing zone rules, systems that must stay on-prem, regulation, mandated platforms, budget, dates). One line each, with where it comes from.
+## 9. Non-functional requirements
 
-## 5. Options considered and the recommendation
-*(Only when there was a real choice. Give every option a descriptive name; letters are secondary.)*
-
-For each option:
-
-**Option A — [descriptive name, e.g. "Vendor-hosted SaaS"]**
-- **What it is:** 2–3 sentences in plain words, including where it runs and who operates it.
-- **Small diagram** of how it differs (optional but recommended).
-- **Strengths / weaknesses** for this client.
-- **Cost, effort and risk** (indicative; `[TBC]` if unknown).
-
-**Comparison**
-
-| Criterion | Vendor-hosted SaaS (A) | In bank's Azure tenancy (B) | … |
+**Table 6 — Non-functional requirements**
+| Category | Requirement | Target | How the design meets it |
 |---|---|---|---|
 
-**Recommendation:** the option by name *and* description, and the 2–3 reasons that decided it.
+## 10. Operations and support
 
-## 6. Solution strategy — the key design decisions in plain words
-5–8 bullets: each decision, what it means in practice, and why. (e.g. "All AI model calls go through the bank's AI gateway — the single controlled entry point to Azure AI services — so usage is logged, metered and filtered.")
+[Monitoring and alerting, support model and responsibilities, runbooks,
+release and change management.]
 
-## 7. Building blocks
-**7.1 Container view** (C4 level 2): the deployable parts of the solution and the existing systems they connect to, grouped by layer, numbered arrows. Rendered as a picture; draw.io with official cloud icons when a CSP applies.
+## 11. Implementation roadmap
 
-**7.2 Component catalogue** — one block per component:
-
-| | |
-|---|---|
-| **What it is** | Plain-language description; product/service name explained |
-| **Why it is here** | The goal or requirement it serves |
-| **What it does / does not do** | 3–6 bullets |
-| **Talks to** | Systems, direction, protocol, authentication |
-| **Runs on / owned by** | Hosting, environment, team that operates it |
-| **When it is busy or fails** | Scaling behaviour, failure impact, fallback |
-| **Security** | Identity, network placement, data held |
-
-## 8. How it works at runtime — key journeys
-For each of the 2–4 most important journeys:
-
-- One sentence on the journey and when it happens.
-- **Flow diagram** (sequence diagram), numbered steps, rendered as a picture.
-- **Step table:**
-
-| Step | Who / which component | What happens | Data | How (protocol, auth) |
+**Figure 5 — Implementation roadmap**
+| Phase | Scope | Dependencies | Exit criteria | Indicative timing |
 |---|---|---|---|---|
 
-- **When things go wrong:** what the customer and agent experience if a step fails, and the fallback.
+## 12. Risks, assumptions and dependencies
 
-## 9. Deployment
-Where everything runs: environments, regions, networks and subnets, private connections, on-prem vs cloud vs vendor. Deployment diagram with official cloud icons. Explain each network zone in one line.
+**Table 7 — Risks**
+| ID | Risk | Impact | Mitigation | Owner |
+|---|---|---|---|---|
+**Table 8 — Assumptions and dependencies**
+| ID | Assumption or dependency | Owner | Status |
+|---|---|---|---|
 
-## 10. Integration
-| # | From → to | Why | How (pattern, protocol) | Authentication | Data | Volume / latency | Owner |
-|---|---|---|---|---|---|---|---|
+## Appendices
 
-## 11. Cross-cutting concerns
-- **Security and privacy** — identity, network, encryption, secrets, data minimisation, audit.
-- **Compliance** — regulation → control → where in this design.
-- **Operations** — monitoring, alerting, support model, runbooks.
-- **AI governance** (if applicable) — model access path, grounding and knowledge sources, guardrails, evaluation, human oversight.
-
-## 12. Quality requirements as scenarios
-| Quality | Scenario ("When…, the system…, within…") | How the design achieves it |
+### Appendix A — Glossary
+### Appendix B — Requirements traceability
+| Requirement ID | Requirement | Section |
 |---|---|---|
-| Availability | When the AI platform is unavailable, calls route to the IVR within 5 s | Health-checked routing in the contact center |
-
-## 13. Decisions log
-| Decision | Options considered (named and described) | Chosen | Why | Consequences |
-|---|---|---|---|---|
-
-## 14. Risks, assumptions and open questions
-Tables with ids, owner, date and what happens if unresolved.
-
-## 15. Roadmap
-Phases with scope, dependencies and exit criteria.
-
-## 16. Glossary
-Every acronym and product name used, in one line each.
+### Appendix C — References
+### Appendix D — Design decisions
+| ID | Decision | Rationale |
+|---|---|---|
+[Decisions taken only. No rejected options or comparisons.]

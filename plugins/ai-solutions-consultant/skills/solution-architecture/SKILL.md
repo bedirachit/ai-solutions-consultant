@@ -43,33 +43,36 @@ a hypothesis that holds until a constraint changes; make the constraints explici
    AI risks (hallucination, prompt injection, data leakage), cost at 10× volume.
 8. **Iterate** on the weakest part, then write the Solution Architecture Document below.
 
-## Write the Solution Architecture Document for the client's team
+## Write the client-ready Solution Architecture Document
 
-The reader is the **client's own team**: architects, platform and infrastructure
-engineers, security, application owners and delivery leads. Follow
-`assets/architecture-document-template.md` and the seven rules in
-`references/document-writing-guide.md` (based on arc42, the C4 model, Google
-design docs and ISO/IEC/IEEE 42010). The non-negotiables:
+The final document goes to the client and must read like top-tier consulting
+work. Follow `assets/architecture-document-template.md` and
+`references/document-writing-guide.md`. The non-negotiables:
 
-1. **Explain in place.** Every option, system, product, acronym and team is
-   explained in the sentence where it first appears. Never write "Option B"
-   without saying what Option B is; give options descriptive names.
-2. **Sections 1–2 stand alone.** The problem, then "the solution at a glance":
-   a **simple flow diagram** (5–8 boxes, left to right, plain names, numbered
-   arrows, new parts highlighted) followed by the same steps in numbered
-   sentences, a new-vs-unchanged table, and the recommended approach described
-   by what it is.
-3. **Diagrams render as pictures** in the delivered format — check before
-   delivery (native diagram support in docs tools; PNG/SVG images in Word and
-   PDF; Mermaid only where it renders, e.g. GitHub). Never deliver diagram code
-   that shows as text.
-4. **Architecture is the core**: context diagram, container view, component
-   catalogue, runtime journeys (diagram + step table + failure path),
-   deployment, integration, cross-cutting concerns, quality scenarios.
-5. Run the self-check in the writing guide before sending for review.
+1. **Proposed solution only.** No rejected options, comparisons or scoring in
+   the document. Decisions taken go in Appendix D with a one-line rationale.
+   Options analysis, when the client wants it, is a separate Options Paper.
+2. **15–20 pages** including figures and tables; follow the page budget. Move
+   detail to appendices rather than exceeding it.
+3. **Client-ready format:** cover, document control, a real table of contents,
+   numbered sections, numbered and captioned figures and tables.
+4. **Professional headings and voice.** Use the template's headings (or a
+   client-specific noun phrase). Never a heading that describes the writing
+   task ("in one paragraph", "at a glance"). Each section opens with its key
+   message. Avoid every phrase on the guide's "never use" list. Leave no
+   template notes or brackets in the delivered text.
+5. **Explain in place.** Every system, product and acronym is explained where it
+   first appears.
+6. **Diagrams:** Figure 1 is the simple solution overview flow; every journey has
+   a flow or sequence diagram, a step table and exception handling. Every
+   diagram renders as a picture in the delivered format.
+7. Run the guide's self-check before sending for review.
+
+Keep options analysis and trade-off reasoning in your working notes and ADRs;
+use them to justify decisions, not as document content.
 
 When draw.io diagrams are requested, hand `csp-architecture-diagram` the
-simple flow, the context view, the container view and each journey, with the
+overview flow, logical architecture, deployment view and each journey, with the
 component list, groupings and numbered edges.
 
 ## Guardrails

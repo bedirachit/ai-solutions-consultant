@@ -54,6 +54,7 @@ stages needed for what was asked; offer the others in one line.
 | "Understanding document" / scope | 2 + R → 3 |
 | Architecture | 2 + R → 3 → 4 (diagram if a CSP is named or a diagram is requested) |
 | Research / best practices / "how have others done it" | R only |
+| Options or vendor/hosting comparison | 2 + R → Options Paper by solution-architect |
 | Diagram only (architecture already given) | 2 (light) → 5 |
 | Deck on existing material | 6 |
 | Review of the user's artifact | 7 only |
@@ -82,11 +83,12 @@ practice, regulation, risks) and cite it where it shapes a requirement or risk.
 ### 4. Architecture → solution-architect → partner gate
 Brief: framing, the **approved** Understanding Document and Research Brief, CSP
 and landing-zone constraints, NFRs, required views, format. Ask for the
-**Solution Architecture Document** written for the client's own team, following
-the template and writing guide: Sections 1–2 stand alone with a simple flow
-diagram and the steps in words; every option, system and acronym explained where
-it first appears; architecture as the core; every diagram rendered as a picture
-in the delivered format. Ask it to state where it follows or departs from the reference
+**client-ready Solution Architecture Document** following the template and
+writing guide: proposed solution only (no options or comparisons), 15–20 pages,
+cover, document control and table of contents, consulting-grade headings and
+voice, Figure 1 overview flow, a diagram per journey, every diagram rendered as a
+picture. If the user also wants the options compared, commission a separate
+Options Paper. Ask it to state where it follows or departs from the reference
 architectures and best practices found. Ask it to also return a diagram spec
 (components, groups, labelled edges, new vs existing, legend) when a diagram follows.
 
@@ -116,7 +118,7 @@ Independent agents may run in parallel only when they do not depend on each
 other (e.g. diagram and deck after the architecture is approved).
 
 ### 7b. Before delivering any document
-Open the final file and check that every diagram shows as a picture (not as code) and that Section 2 has the simple flow diagram. If not, send it back to the author before delivery.
+Open the final file and check: every diagram shows as a picture (not as code); Figure 1 overview flow present; table of contents present; page count within 15–20; no options section; no instruction-like headings or template notes. If not, send it back to the author before delivery.
 
 ### 8. Close
 Ask the partner agent for the cover note, then give the user:

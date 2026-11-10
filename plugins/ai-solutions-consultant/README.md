@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="Claude Cowork plugin" src="https://img.shields.io/badge/Claude-Cowork%20plugin-D97757"/>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.6.0-1E4FD8"/>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.7.0-1E4FD8"/>
   <img alt="Clouds" src="https://img.shields.io/badge/clouds-Azure%20%7C%20AWS%20%7C%20GCP%20%7C%20Hybrid-0B1F4D"/>
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green"/>
 </p>
@@ -20,7 +20,7 @@
 
 ## Why this exists
 
-Architecture work for a client usually means four people and two weeks: someone runs discovery, an architect designs, someone else draws it in Visio or draw.io, and an engagement manager turns it into a deck the CEO/CIO will read. Then a partner tears it apart and it all goes round again.
+Architecture work for a client usually means four people and two weeks: someone runs discovery, an architect designs, someone else draws it in Visio or draw.io, and an engagement manager turns it into a deck the CIO will read. Then a partner tears it apart and it all goes round again.
 
 This plugin puts that whole team into Claude, with the partner's quality gate built in. You talk to **one person, the AI Solutions Lead**. It asks the questions a good consultant would ask, assigns the work to the right specialists, and gets every deliverable through partner review before handing it to you.
 
@@ -33,7 +33,7 @@ This plugin puts that whole team into Claude, with the partner's quality gate bu
 | **Clarifying questions** | The 4–8 questions whose answers change the design, asked as quick multiple-choice rounds | In chat |
 | **Research Brief** | How similar organizations implemented the same use case, provider reference architectures, best practices, pitfalls, regulation and benchmarks, every claim cited and source-graded | Markdown / doc |
 | **Understanding Document** | Executive summary, scope in/out, as-is and to-be process, numbered FR/NFR, integration inventory, assumptions, risks, open questions | Living doc, Markdown or Word |
-| **Solution Architecture Document** | Structured on arc42, the C4 model and Google-style design docs, written for the client's own team. Opens with the problem and a **simple flow diagram** of the solution with the steps in words; explains every option, system and acronym where it first appears; then context, options considered, building blocks and component catalogue, runtime journeys (diagram + step table + failure path), deployment, integration, security, quality scenarios, decisions | Living doc, Markdown or Word |
+| **Solution Architecture Document** | Client-ready, 15–20 pages, proposed solution only: cover, document control, table of contents; executive summary; context and objectives; solution overview with a simple flow diagram; logical architecture and component descriptions; key journeys with flow diagrams and step tables; integration; deployment; security, compliance and AI governance; non-functional requirements; operations; roadmap; risks; appendices (glossary, traceability, references, design decisions). Written in a consulting-grade style: conclusion first, numbered figures and tables, no AI-style headings | Word, living doc or Markdown |
 | **Architecture diagrams** | Context, logical, deployment, network or current-vs-proposed views using the **official Azure, AWS or GCP icon sets** | draw.io, plus a one-click **Open in draw.io** link and a `.drawio` file |
 | **Executive deck** | Answer-first storyline, action titles, exhibits instead of bullets, sources on every slide, decisions requested | Claude Slides or PowerPoint |
 | **Partner review note** | Scores, what changed in revision, residual risks, the one-sentence takeaway | Attached to every deliverable |
@@ -76,7 +76,7 @@ Every artifact is scored 1–5 against a scorecard for its type. It ships only w
 |---|---|
 | Research Brief | Relevance · evidence quality · coverage · citation integrity · confidentiality · decision usefulness |
 | Understanding Document | Completeness · accuracy and sourcing · requirement quality · current vs target clarity · risk coverage · executive readability |
-| Architecture | Self-contained explanations · simple flow diagram · client-team readability · architecture depth · journey flows · traceability to requirements · soundness · trade-offs · security and compliance · resilience · CSP fidelity · AI governance |
+| Architecture | Client-ready format · consulting-grade writing · self-contained explanations · simple flow diagram · client-team readability · architecture depth · journey flows · traceability to requirements · soundness · trade-offs · security and compliance · resilience · CSP fidelity · AI governance |
 | Diagram | Official icon fidelity · correctness · structure and nesting · flow clarity · readability · new vs existing · draw.io link delivered |
 | Deck | Storyline · action titles · evidence · audience fit · visual quality · the ask · consistency |
 
@@ -151,10 +151,10 @@ Draw the current vs proposed inbound call flow in draw.io: [describe both flows]
 How have banks implemented AI agent assist in their contact centers? Best practices, pitfalls and published results.
 ```
 
-**Decision and ADR**
+**Options Paper (kept separate from the architecture document)**
 ```
 /ai-solutions-lead
-Our AI vendor offers SaaS or deployment into our GCP project. Compare them for a regulated bank and write the ADR.
+Our AI vendor offers SaaS or deployment into our GCP project. Compare them for a regulated bank and write an Options Paper with an ADR.
 ```
 
 **Partner review of your own work**

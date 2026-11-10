@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "AI Solutions Consultant plugin for Claude Cowork — discovery, understanding documents, CSP architecture in draw.io with official icons, executive decks, and MD / Senior Partner review.",
-    "version": "0.6.0"
+    "version": "0.7.0"
   },
   "plugins": [
     {
       "name": "ai-solutions-consultant",
       "source": "./plugins/ai-solutions-consultant",
       "description": "A consulting team in a plugin, fronted by one AI Solutions Lead (/ai-solutions-lead): clarifying questions, understanding document, CSP-specific architecture in draw.io with official icons, executive decks — every deliverable reviewed by an MD / Senior Partner agent.",
-      "version": "0.6.0",
+      "version": "0.7.0",
       "license": "MIT",
       "keywords": [
         "solution-architecture",
