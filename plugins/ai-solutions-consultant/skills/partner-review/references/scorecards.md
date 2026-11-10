@@ -13,6 +13,15 @@ Anchors for every dimension: **5** client-ready, no edits; **4** minor polish on
 | Decision usefulness | Clear, specific implications for the design; gaps and confidence stated |
 Must-fix: any uncited or unverifiable claim; invented case study or statistic; client-confidential detail in queries.
 
+## Solution Summary (checkpoint)
+| Dimension | What 5 looks like |
+|---|---|
+| Clarity | A sponsor understands the proposed solution in two minutes; terms explained |
+| Soundness | Approach fits the approved requirements, constraints and research |
+| Decisions | Key decisions stated with reasons; no options comparison |
+| Open questions | The questions that need the user's input are explicit, with impact |
+Must-fix: unexplained jargon; missing open questions that change the design; diagrams or full document produced before the checkpoint.
+
 ## Understanding Document
 | Dimension | What 5 looks like |
 |---|---|
@@ -34,7 +43,7 @@ Must-fix: invented figures; missing scope boundaries; no open-questions list.
 | Architecture depth | Architecture is the bulk of the document; every component has role, purpose, responsibilities, interfaces, technology, owner, scaling/failure, security, rationale |
 | Simple flow diagram | Figure 1 in the Solution overview is a simple flow (5–8 boxes, plain names, numbered arrows) **visible as a picture**, followed by the steps in words |
 | Journey flows | One rendered flow diagram per key journey, numbered steps matching a step table; failure paths described |
-| Traceability | Every component and decision traces to FR/NFR ids |
+| Traceability | Every component and decision traces to FR/NFR ids, and the document matches the user-approved Solution Summary |
 | Soundness | Patterns fit sync/async, read/write, HITL needs; capacity estimated |
 | Trade-offs | Major choices have solves / worsens / when-to-change; ADRs recorded |
 | Security & compliance | Least privilege, private connectivity, governed AI access, data protection, audit |
@@ -65,4 +74,5 @@ Must-fix: missing official icons for a named CSP; missing link; components not i
 | Visual quality | Exhibits over bullets; consistent layout; brand/design system applied; nothing overflows |
 | The ask | Decisions requested are explicit, owned and dated |
 | Consistency | Names, numbers and scope match the architecture and understanding document |
+
 Must-fix: topic-label titles on C-suite slides; invented numbers; missing ask; inconsistency with approved architecture.

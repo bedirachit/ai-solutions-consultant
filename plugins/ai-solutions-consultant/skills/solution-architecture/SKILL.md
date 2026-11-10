@@ -43,10 +43,25 @@ a hypothesis that holds until a constraint changes; make the constraints explici
    AI risks (hallucination, prompt injection, data leakage), cost at 10× volume.
 8. **Iterate** on the weakest part, then write the Solution Architecture Document below.
 
+## First pass: the Solution Summary (for the user checkpoint)
+
+Before any diagram or document, produce a 1–2 page Solution Summary the user can
+review in two minutes:
+
+1. **Proposed approach** — 3–4 sentences: what will be built, where it runs, what it connects to.
+2. **Main components** — a table: component, new / changed / unchanged, what it does (one line).
+3. **Key journeys** — each in 3–6 numbered steps.
+4. **Key design decisions** — 4–6 bullets, each with a one-line reason.
+5. **Alignment with industry practice** — where it follows or departs from the reference architectures in the Research Brief.
+6. **Assumptions and open questions** — the items the user should confirm, each with what changes if the answer differs.
+
+Explain every system and term at first use. No options comparison.
+
 ## Write the client-ready Solution Architecture Document
 
-The final document goes to the client and must read like top-tier consulting
-work. Follow `assets/architecture-document-template.md` and
+Write it only after the user has approved the Solution Summary, and follow
+the approved summary. The final document goes to the client and must read like
+top-tier consulting work. Follow `assets/architecture-document-template.md` and
 `references/document-writing-guide.md`. The non-negotiables:
 
 1. **Proposed solution only.** No rejected options, comparisons or scoring in

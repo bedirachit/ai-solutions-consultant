@@ -52,13 +52,13 @@ stages needed for what was asked; offer the others in one line.
 | User asks for | Stages |
 |---|---|
 | "Understanding document" / scope | 2 + R → 3 |
-| Architecture | 2 + R → 3 → 4 (diagram if a CSP is named or a diagram is requested) |
+| Architecture | 2 + R → 3 → 4a → **4b checkpoint** → 4c (+5 if a CSP is named or a diagram is requested) |
 | Research / best practices / "how have others done it" | R only |
 | Options or vendor/hosting comparison | 2 + R → Options Paper by solution-architect |
 | Diagram only (architecture already given) | 2 (light) → 5 |
 | Deck on existing material | 6 |
 | Review of the user's artifact | 7 only |
-| Full engagement | 2 + R → 3 → 4 → 5 → 6 |
+| Full engagement | 2 + R → 3 → 4a → **4b checkpoint** → 4c + 5 → 6 |
 
 `2 + R` means: dispatch the research in the background, then ask the clarifying questions while it runs.
 
@@ -80,23 +80,48 @@ Load `understanding-document` and write it yourself: you hold the user's
 answers and materials. Use the approved Research Brief for context (industry
 practice, regulation, risks) and cite it where it shapes a requirement or risk.
 
-### 4. Architecture → solution-architect → partner gate
+### 4a. Solution summary → solution-architect → partner gate
 Brief: framing, the **approved** Understanding Document and Research Brief, CSP
-and landing-zone constraints, NFRs, required views, format. Ask for the
-**client-ready Solution Architecture Document** following the template and
-writing guide: proposed solution only (no options or comparisons), 15–20 pages,
-cover, document control and table of contents, consulting-grade headings and
-voice, Figure 1 overview flow, a diagram per journey, every diagram rendered as a
-picture. If the user also wants the options compared, commission a separate
-Options Paper. Ask it to state where it follows or departs from the reference
-architectures and best practices found. Ask it to also return a diagram spec
-(components, groups, labelled edges, new vs existing, legend) when a diagram follows.
+and landing-zone constraints, NFRs. Ask for a **Solution Summary** (format in
+the `solution-architecture` skill): 1–2 pages, the proposed approach, the main
+components and what each does, the key journeys in a few steps each, the key
+design decisions with one-line reasons, where it follows or departs from the
+reference architectures, and the assumptions and open questions that need the
+user's input. No diagrams yet and no full document.
+
+### 4b. Checkpoint with the user (mandatory before any diagram or document)
+Present the partner-approved Solution Summary to the user in the chat, in
+plain language, short enough to read in two minutes. Then ask with
+AskUserQuestion:
+- "Does this proposed solution reflect what you want?" — options: **Approve —
+  write the document and diagrams (Recommended)** · **Approve with changes —
+  I'll add them** · **Rework the approach**.
+- Ask the open questions from the summary in the same call when their answers
+  change the design (max 4 questions in total).
+
+Wait for the answer. Incorporate every change the user gives into the summary
+(through the solution architect when the change alters the design), confirm the
+updated points back in one short message, and loop at most twice. Do not
+commission diagrams or the Solution Architecture Document until the user has
+approved the summary. In an unattended run, state that the checkpoint could not
+be held, proceed on the summary as written, and flag it in the cover note.
+
+### 4c. Solution Architecture Document → solution-architect → partner gate
+Brief: the **user-approved** Solution Summary with the user's changes marked,
+plus everything from 4a. Ask for the **client-ready Solution Architecture
+Document** following the template and writing guide: proposed solution only
+(no options or comparisons), 15–20 pages, cover, document control and table of
+contents, consulting-grade headings and voice, Figure 1 overview flow, a diagram
+per journey, every diagram rendered as a picture. Ask it to also return a
+diagram spec (components, groups, labelled edges, new vs existing, legend). If
+the user also wants options compared, commission a separate Options Paper.
 
 ### 5. Diagrams → diagram-specialist → partner gate
 Whenever an architecture document is produced, also commission draw.io versions
 of its overview and journey flow diagrams, then have the architect insert the
 exported images (with their Open in draw.io links) into the document.
-Brief: approved architecture, diagram spec, provider (official icon set),
+Run in parallel with 4c, after the checkpoint. Brief: the user-approved
+Solution Summary, the diagram spec, provider (official icon set),
 view types, file names. It must return the **Open in draw.io link** and the
 `.drawio` file path; pass both to the user.
 

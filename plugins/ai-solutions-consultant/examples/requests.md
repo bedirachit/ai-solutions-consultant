@@ -25,7 +25,9 @@ through an AI gateway. I need:
 | 1 | AI Solutions Lead | 4 multiple-choice questions (call volume, vendor hosting, systems of record, compliance) |
 | 2 | discovery-analyst → md-senior-partner | Research Brief: how banks built card-servicing voice bots, Azure reference architectures, pitfalls, regulator guidance (runs while you answer step 1) |
 | 2b | AI Solutions Lead → md-senior-partner | Understanding Document + review note (e.g. approved in round 1) |
-| 3 | solution-architect → md-senior-partner | Architecture write-up with ADRs + review note (e.g. round 2 after fixing a missing fallback path) |
+| 3 | solution-architect → md-senior-partner | Solution Summary (1–2 pages) |
+| 3b | AI Solutions Lead ↔ you | Checkpoint: you approve or suggest changes; nothing is drawn or written up before this |
+| 3c | solution-architect → md-senior-partner | Client-ready Solution Architecture Document + review note (e.g. round 2 after fixing a missing fallback path) |
 | 4 | diagram-specialist → md-senior-partner | Azure diagram in draw.io, **Open in draw.io** link, `.drawio` file + review note |
 | 5 | deck-strategist → md-senior-partner | CIO/COO deck + review note |
 | 6 | AI Solutions Lead | Partner cover note: three takeaways, open questions, decisions required, placeholders to fill |
